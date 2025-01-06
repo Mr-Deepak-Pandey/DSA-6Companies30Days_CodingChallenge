@@ -1,0 +1,26 @@
+class Solution {
+public:
+    vector<string> findRepeatedDnaSequences(string s) {
+      int n=s.size();
+      vector<string> res;
+
+      int j=0;
+      unordered_map<string,int> mp;
+    // simple hmne kya kra 10 size ke saare string daal diye ek ek krke n-10 index tk le jaake
+      while(j<=n-10)
+      { 
+       
+        string temp=s.substr(j,10);
+        mp[temp]++;
+
+        j++;
+
+      }  
+      for(auto it:mp)
+      {if(it.second>1)
+      res.push_back(it.first);
+
+      }
+      return res;
+    }
+};
