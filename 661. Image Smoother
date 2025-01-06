@@ -1,0 +1,32 @@
+class Solution {
+public:
+    vector<vector<int>> imageSmoother(vector<vector<int>>& img) {
+        int m = img.size();    // rows
+        int n = img[0].size(); // cols
+        vector<vector<int>> res=img;
+
+        vector<pair<int, int>> dir = {{-1, 0}, {-1, 1}, {0, 1},  {1, 1},
+                                      {1, 0},  {1, -1}, {0, -1}, {-1, -1}};
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                int val=img[i][j];
+                int countValid=1;
+                for(auto it:dir)
+                {int newRow=i+it.first;
+                int newCol=j+it.second;
+
+                if(newRow>=0 && newRow<m && newCol>=0 && newCol<n)
+                {val+=img[newRow][newCol];
+                countValid++;
+                }
+
+                }
+                res[i][j]=val/countValid;
+
+            }
+        }
+
+        return res;
+    }
+};
