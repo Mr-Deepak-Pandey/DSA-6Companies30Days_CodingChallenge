@@ -1,0 +1,37 @@
+class Solution {
+public:
+    int minMoves2(vector<int>& nums) {
+        int moves=0;
+        //this approach will not work 
+        //there is a catch
+        //kyonki mai average leke ,hrr eleemnt ko uske equal bna chahunga toh ye tbb kaam krta jabb array me min se leke max tkk ke saare elements hote
+        //prr maan le agar skewed distribution (yaani kiss ek number ke aas paas ki zyada values hui toh) ,isliye measure of central tendency ka use krenge
+        //i.e//mean,meadian/mode
+        //hum median le rhe
+        /*
+        int sum=accumulate(nums.begin(),nums.end(),0);
+
+        int averageSum=sum/nums.size();
+
+        for(int i=0;i<nums.size();i++)
+        {
+            moves+=abs(nums[i]-averageSum);
+        }
+        return moves;
+        */
+
+
+        sort(nums.begin(),nums.end());
+        int n=nums.size();
+        int median=(n%2==0)?(nums[(n/2)-1]+nums[n/2])/2:nums[n/2];
+
+        for(int i=0;i<n;i++)
+        {
+            moves+=abs(nums[i]-median);
+
+        }
+        return moves;
+
+        
+    }
+};
