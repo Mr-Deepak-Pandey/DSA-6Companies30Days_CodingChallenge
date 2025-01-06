@@ -1,0 +1,36 @@
+class Solution {
+public:
+    void solve(int k,int index,vector<int> & vis,int &ans)
+    {
+        if(vis.size()==1)
+        {
+            ans=vis[0];
+            return;
+        }
+
+        index=(index+k-1)%vis.size();
+        vis.erase(vis.begin()+index);
+
+        solve(k,index,vis,ans);
+    }
+    int findTheWinner(int n, int k) {
+        //isko hum queue se bhi solve kr skte hai
+        //queue le lenge aur pehle k-1 ko push krte jaayenge aurr saath saath pop phir kth element ko pop..jb tkk queue ka size 1 nhi ho jaata
+        
+        //using recursion
+        //josephus problem
+
+
+        //constant space waala approach dekh liye recuurence relation mathematically
+        vector<int> vis(n);
+        int ans;
+
+        for(int i=0;i<n;i++)
+        vis[i]=i+1;
+        
+        
+       solve(k,0,vis,ans);
+
+       return ans;
+    }
+};
