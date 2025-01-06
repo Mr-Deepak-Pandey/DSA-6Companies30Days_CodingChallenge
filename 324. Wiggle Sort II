@@ -1,0 +1,26 @@
+class Solution {
+public:
+    void wiggleSort(vector<int>& nums) {
+         int n=nums.size();
+
+         int j=n-1;
+         sort(nums.begin(),nums.end());//array sort kr diya ab hum second index se peeche se yaani badi values se value daalni shuru krenge 
+         //index+2 krte krte kyonki wiggle sort me condition hi aisi hai
+
+         vector<int> wiggleSort=nums;
+         
+         int i=1;
+
+         while(j>=0)
+         { if(i>=n)
+            i=0;
+
+           wiggleSort[i]=nums[j];
+           i=i+2;
+           j--;
+
+
+         }
+         nums=wiggleSort;
+    }
+};
