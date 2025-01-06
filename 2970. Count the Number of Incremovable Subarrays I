@@ -1,0 +1,38 @@
+class Solution {
+public:
+    int incremovableSubarrayCount(vector<int>& nums) {
+        // constraints chothe hai toh simpkle bruteforce se bhi ho jayega
+        // generate all subarrays and check will removing it results into
+        // strictly increasing array or not
+
+        int n = nums.size();
+        int count = 0;
+
+        // pehle do toh normal subarray loop
+        for (int i = 0; i < n; i++) {
+            for (int j = i; j < n; j++) {
+                int last = -1;//to store previous index value
+                bool flag = true;
+                for (int k = 0; k < n;
+                     k++) // third loop check krne ke liye ki after removing
+                          // this subarray will it results into an strictly
+                          // increasing subarray or not
+                {
+                    if (k >= i && k <= j) // jo subarray nikal rhe woh indices
+                                          // hai toh simple skip
+                        continue;
+
+                    if (last >= nums[k]) {
+                        flag = false;
+                        break;
+                    }
+
+                    last = nums[k];
+                }
+                if (flag)
+                    count++;
+            }
+        }
+        return count;
+    }
+};
