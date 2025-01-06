@@ -1,0 +1,35 @@
+class Solution {
+public:
+//to find nice subaarays with atMost k odds
+    int solve(vector<int> &nums,int k)
+    {
+        int n=nums.size();
+        int countOdd=0;//to count number of odd values
+        int count=0;//to count number of nice subarrays
+
+        int i=0,j=0;
+
+        while(j<n)
+        {
+            if(nums[j]%2==1)
+            countOdd++;
+
+            while(countOdd>k)
+            {
+                if(nums[i]%2==1)
+                countOdd--;
+
+                i++;
+            }
+
+            count+=j-i+1;
+            j++;
+        }
+        return count;
+    }
+    int numberOfSubarrays(vector<int>& nums, int k) {
+        //see previous solution for explaination
+
+        return (solve(nums,k)-solve(nums,k-1));
+    }
+};
