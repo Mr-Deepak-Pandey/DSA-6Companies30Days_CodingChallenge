@@ -1,0 +1,18 @@
+class Solution {
+public:
+    string convertToTitle(int columnNumber) {
+        string s="";
+        //abb ye base 26 waala kaam hai 
+        //toh jaise binary conversion ya decimal conversion ,baaki base ka conversion krte hai same waise hi krna hai
+
+        while(columnNumber>0)
+        {
+            columnNumber--;// 0 base indexing pr aane ke liye 0-25
+
+            s=char(columnNumber%26 +'A')+s;//yha pr dekh hum string ke aage jod rhe hai hr baar
+            columnNumber=columnNumber/26;
+        }
+        return s;
+        
+    }
+};
